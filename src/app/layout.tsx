@@ -31,9 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
+          <div className="dark:bg-secondary">
           <Navbar />
           {children}
           <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

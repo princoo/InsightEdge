@@ -78,7 +78,7 @@ export default function LoginForm() {
         Forgot password?
       </Link>
 
-      <Button variant="outline" size="large" type="submit" disabled={isLoading}>
+      <Button variant="primary" size="large" type="submit" disabled={isLoading}>
         {isLoading ? "Logging in..." : "Login"}
       </Button>
       <AuthMethods />
