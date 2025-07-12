@@ -3,6 +3,7 @@ import ImageContainer from "../ui/ImageContainer";
 import Link from "next/link";
 import { Post } from "@/types/post";
 import { formatToReadableDate } from "@/app/lib/utils/dateFormat";
+import Image from "next/image";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
@@ -37,7 +38,7 @@ export default function PostCard({ post }: { post: Post }) {
         </h2>
 
         <div className="flex items-center gap-3">
-          <ImageContainer
+          <Image
             src={post.user.profile_image}
             alt={post.user.name}
             width={32}
