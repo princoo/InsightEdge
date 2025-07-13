@@ -5,6 +5,8 @@ import Footer from "@/components/ui/Footer";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "@/components/ui/Navbar";
 import { Toaster } from "react-hot-toast";
+import { SessionProvider } from "next-auth/react";
+import { WebVitals } from "@/components/WebVitals";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +33,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
-          <div className="dark:bg-secondary">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <WebVitals />
+          <ThemeProvider>
+            <SessionProvider>
+              <div className="dark:bg-secondary">
+                <Navbar />
+                {children}
+                <Footer />
+              </div>
+            </SessionProvider>
+          </ThemeProvider>
         <Toaster />
       </body>
     </html>

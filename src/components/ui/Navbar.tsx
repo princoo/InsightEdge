@@ -6,6 +6,7 @@ import Image from "next/image";
 import { navItems } from "./navItems";
 import Link from "next/link";
 import { ThemeToggler } from "./ThemeToggler";
+import UserAvatar from "../UserAvatar";
 
 export default function Navbar() {
   const [state, setState] = useState(false);
@@ -83,14 +84,9 @@ export default function Navbar() {
             })}
           </ul>
         </div>
-        <div className="hidden md:inline-block">
+        <div className="hidden md:flex gap-5">
+          <UserAvatar />
           <ThemeToggler />
-          {/* <a
-            href="javascript:void(0)"
-            className="py-3 px-4 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow"
-          >
-            Get Started
-          </a> */}
         </div>
       </div>
     </nav>
