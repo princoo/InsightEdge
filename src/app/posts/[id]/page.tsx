@@ -16,6 +16,7 @@ export async function generateStaticParams() {
     id: post.id.toString(),
   }));
 }
+
 export default async function SignlePost({
   params,
 }: {
