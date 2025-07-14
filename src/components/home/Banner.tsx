@@ -1,7 +1,10 @@
+"use client";
+
 import { Post } from "@/types/post";
 import Image from "next/image";
 import ImageContainer from "../ui/ImageContainer";
 import { formatToReadableDate } from "@/app/lib/utils/dateFormat";
+import { devtoLoader } from "@/app/lib/utils/externalLoader";
 // import collin from "/collin.jpg"
 export default function Banner({ post }: { post: Post }) {
   return (
@@ -32,6 +35,7 @@ export default function Banner({ post }: { post: Post }) {
             width={30}
             height={30}
             alt={post.user.name}
+            loader={devtoLoader}
             className="rounded-full object-cover"
           />
           <div className="flex flex-col text-xs">
