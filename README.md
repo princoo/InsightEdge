@@ -84,6 +84,31 @@ See [Next.js deployment documentation](https://nextjs.org/docs/app/building-your
 - [Learn Next.js](https://nextjs.org/learn)
 - [Next.js GitHub](https://github.com/vercel/next.js)
 
----
 
-Feel free to contribute or
+## Technical Insights
+
+### 1. Performance Improvements with `next/image`
+Using Next.js’s built-in [`next/image`](https://nextjs.org/docs/app/building-your-application/optimizing/images) component provided automatic image optimization, lazy loading, and responsive sizing. This reduced Largest Contentful Paint (LCP) and improved overall page load speed, especially for post cover images and author avatars.
+
+### 2. Middleware for Access Control and Request Tracking
+Custom middleware (`src/middleware.ts`) was used to:
+- Restrict access to protected routes (like `/dashboard`) based on user roles.
+- Redirect unauthorized users to the login or unauthorized page.
+- Log incoming request headers for debugging and analytics.
+- Add custom response headers (e.g., `x-powered-by: InsightEdge`) for branding and tracking.
+
+### 3. ISR with Revalidation for Posts
+Incremental Static Regeneration (ISR) was implemented for posts, allowing pages to be statically generated at build time and revalidated on demand. This ensured fast initial loads and up-to-date content without full rebuilds. Revalidation was triggered based on post updates, keeping the post list fresh while maintaining performance.
+
+### 4. Authentication Setup Challenges
+Setting up authentication with NextAuth.js involved:
+- Configuring custom callbacks for JWT and session management.
+- Assigning roles based on user email.
+- Handling edge cases for missing user images and session data.
+- Ensuring protected routes worked seamlessly with middleware and session state.
+
+### 5. Web Vitals Most Impacted by Optimizations
+The following Web Vitals saw the greatest improvements:
+- **LCP (Largest Contentful Paint):** Optimized images and reduced render-blocking resources.
+- **FID (First Input Delay):** Minimal JavaScript and fast hydration.
+- **CLS (Cumulative Layout Shift):** Reserved space for images and consistent layout structure.
