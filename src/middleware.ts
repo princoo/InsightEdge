@@ -3,6 +3,10 @@ import { getToken } from "next-auth/jwt";
 import { protectedRoutes } from "./app/lib/access";
 
 export async function middleware(req: NextRequest) {
+  req.headers.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+  });
+
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
@@ -21,9 +25,11 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  // return NextResponse.next();
+  const res = NextResponse.next();
+  res.headers.set("x-powered-by", "InsightEdge");
+  return res;
 }
 export const config = {
-  matcher: ["/dashboard/:path*", "/admin/:path*"],
+  matcher: ["/dashboard/:path*"],
 };
-

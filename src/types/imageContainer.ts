@@ -6,5 +6,6 @@ export interface ImageContainerProps {
     height?: number;
     className?: string;
     fill?: boolean;
+    priority?: boolean
     sizez?: string
 }

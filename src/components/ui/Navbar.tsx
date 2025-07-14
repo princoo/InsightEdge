@@ -7,26 +7,23 @@ import { navItems } from "./navItems";
 import Link from "next/link";
 import { ThemeToggler } from "./ThemeToggler";
 import UserAvatar from "../UserAvatar";
+import AuthActions from "../AuthActions";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [state, setState] = useState(false);
   return (
     <nav className="bg-white dark:bg-secondary w-full border-b md:border-0 md:static">
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <div className="flex gap-2">
-            <Link href="/">
-              <Image
-                src={Logo}
-                width={30}
-                height={30}
-                alt="Logo icon"
-                // placeholder="blur"
-              />
+            <Link href="/" className="flex gap-2">
+              <Image src={Logo} width={30} height={30} alt="Logo icon" />
+              <p className="text-xl uppercase dark:text-white">
+                Insight<span className="font-bold">Edge</span>
+              </p>
             </Link>
-            <p className="text-xl uppercase dark:text-white">
-              Insight<span className="font-bold">Edge</span>
-            </p>
           </div>
           <div className="md:hidden">
             <button
@@ -72,16 +69,21 @@ export default function Navbar() {
         >
           <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {navItems.map((item) => {
+              const isActive = pathname === item.href;
+
               return (
                 <Link
                   href={item.href}
                   key={item.label}
-                  className="text-secondary-text dark:text-white hover:text-blue"
+                  className={`text-secondary-text dark:text-white hover:text-blue ${
+                    isActive ? "font-semibold text-blue underline" : ""
+                  }`}
                 >
                   {item.label}
                 </Link>
               );
             })}
+            <AuthActions />
           </ul>
         </div>
         <div className="hidden md:flex gap-5">

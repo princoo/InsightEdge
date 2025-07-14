@@ -10,7 +10,8 @@ export default function Banner({ post }: { post: Post }) {
         src={post.cover_image}
         alt={post.title}
         fill={true}
-        className="w-full h-48 object-cover rounded-lg"
+        priority={true}
+        className="w-full object-cover rounded-lg"
       />
       <div className="bg-white dark:bg-secondary dark:text-white absolute bottom-0 sm:left-20 transform translate-y-1/2 p-5 sm:max-w-[500px] rounded-lg shadow-lg border border-transparent dark:border-gray/20">
         <div className="flex gap-2 flex-wrap">

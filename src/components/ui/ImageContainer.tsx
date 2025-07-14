@@ -11,6 +11,7 @@ export default function ImageContainer({
   className,
   fill,
   sizez,
+  priority
 }: ImageContainerProps) {
   return (
     <Image
@@ -20,6 +21,7 @@ export default function ImageContainer({
       height={height}
       className={className}
       fill={fill}
+      priority={priority}
       sizes={sizez}
       placeholder="blur"
       blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1200, 600))}`}

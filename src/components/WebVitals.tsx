@@ -1,13 +1,15 @@
-'use client'
- 
-import { useReportWebVitals } from 'next/web-vitals'
- 
-const logWebVitals = (metric) => {
-  console.log(metric)
-}
- 
+"use client";
+
+import { WebVitalsStorage } from "@/app/lib/webVitalsStore";
+import { usePathname } from "next/navigation";
+import { useReportWebVitals } from "next/web-vitals";
+
 export function WebVitals() {
-  useReportWebVitals(logWebVitals)
- 
-  return null
+  const pathname = usePathname();
+  useReportWebVitals((metric) => {
+    WebVitalsStorage.saveMetric(metric.name, metric.value,metric.id,metric.rating,pathname);
+    console.log(metric);
+  });
+
+  return null;
 }

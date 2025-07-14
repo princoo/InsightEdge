@@ -25,7 +25,6 @@ export default async function SignlePost({
   const post = await getSinglePost(id);
   const decoded = decodeUnicodeEscapes(post.body_html || "");
   const sanitized = sanitizeHtml(decoded);
-  // const decodedBody = JSON.parse(JSON.stringify(post.body_html || ""));
   return (
     <div className="w-2/3 mx-auto py-10">
       <div className="flex gap-2 flex-wrap">
@@ -71,6 +70,7 @@ export default async function SignlePost({
           src={post.cover_image}
           alt={post.title}
           fill={true}
+          priority={true}
           sizez="100vw"
           className="object-cover"
         />
