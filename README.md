@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InsightEdge
+
+InsightEdge is a [Next.js](https://nextjs.org) web application bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It features authentication, a dashboard for web vitals, and a posts system.
+
+## Features
+
+- **Authentication**: Secure login/logout using [NextAuth.js](https://next-auth.js.org/), with role-based access control.
+- **Dashboard**: View collected web vitals metrics in a user-friendly dashboard.
+- **Posts**: Browse and view detailed posts, including author info, tags, and cover images.
+- **Responsive UI**: Built with modern React components and Tailwind CSS for styling.
+- **Image Optimization**: Uses Next.js image component with remote patterns for optimized loading.
+- **Protected Routes**: Middleware restricts access to dashboard routes based on user roles.
 
 ## Getting Started
 
@@ -14,23 +25,65 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the homepage by modifying [`src/app/page.tsx`](src/app/page.tsx). The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+
+```
+src/
+  app/
+    dashboard/
+      page.tsx
+    posts/
+      [id]/
+        page.tsx
+    page.tsx
+  components/
+    AuthActions.tsx
+    SimpleDashboard.tsx
+    ...
+  lib/
+    posts.ts
+    utils/
+      dateFormat.ts
+      stringFormat.ts
+      MakeRole.ts
+    webVitalsStore.ts
+middleware.ts
+auth.config.ts
+next.config.ts
+```
+
+## Authentication
+
+- Configured in [`auth.config.ts`](auth.config.ts)
+- Role assignment via email
+- Protected dashboard routes via [`src/middleware.ts`](src/middleware.ts)
+
+## Dashboard
+
+- Displays web vitals metrics using [`SimpleDashboard`](src/components/SimpleDashboard.tsx)
+- Metrics are stored and retrieved from [`WebVitalsStorage`](src/app/lib/webVitalsStore.ts)
+
+## Posts
+
+- List and view posts on the homepage and detail pages
+- Post details include tags, author, date, and cover image
+
+## Deployment
+
+Deploy easily on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+
+See [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
+- [Next.js GitHub](https://github.com/vercel/next.js)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to contribute or
